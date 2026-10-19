@@ -503,6 +503,82 @@ const ShopPage: React.FC = () => {
                 </div>
               </div>
 
+              {/* Active Filter Pills */}
+              {hasActiveFilters && (
+                <div className="mb-6 flex flex-wrap items-center gap-2 rounded-xl bg-white p-3 shadow-sm border border-gray-100">
+                  <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider mr-1">
+                    Active:
+                  </span>
+                  {selectedCategories.map((catId) => {
+                    const catName = categories.find((c) => c.id === catId)?.name || catId;
+                    return (
+                      <button
+                        key={catId}
+                        onClick={() => toggleCategory(catId)}
+                        className="inline-flex items-center gap-1.5 rounded-full bg-forest-50 px-3 py-1 text-xs font-medium text-forest-700 hover:bg-forest-100 transition-colors"
+                      >
+                        {catName}
+                        <X size={12} className="text-forest-500" />
+                      </button>
+                    );
+                  })}
+                  {selectedPriceRanges.map((idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => togglePriceRange(idx)}
+                      className="inline-flex items-center gap-1.5 rounded-full bg-forest-50 px-3 py-1 text-xs font-medium text-forest-700 hover:bg-forest-100 transition-colors"
+                    >
+                      {PRICE_RANGES[idx].label}
+                      <X size={12} className="text-forest-500" />
+                    </button>
+                  ))}
+                  {selectedDifficulties.map((diff) => (
+                    <button
+                      key={diff}
+                      onClick={() => toggleDifficulty(diff)}
+                      className="inline-flex items-center gap-1.5 rounded-full bg-forest-50 px-3 py-1 text-xs font-medium text-forest-700 hover:bg-forest-100 transition-colors"
+                    >
+                      {diff}
+                      <X size={12} className="text-forest-500" />
+                    </button>
+                  ))}
+                  {selectedSunlight.map((sun) => (
+                    <button
+                      key={sun}
+                      onClick={() => toggleSunlight(sun)}
+                      className="inline-flex items-center gap-1.5 rounded-full bg-forest-50 px-3 py-1 text-xs font-medium text-forest-700 hover:bg-forest-100 transition-colors"
+                    >
+                      {sun}
+                      <X size={12} className="text-forest-500" />
+                    </button>
+                  ))}
+                  {inStockOnly && (
+                    <button
+                      onClick={() => setInStockOnly(false)}
+                      className="inline-flex items-center gap-1.5 rounded-full bg-forest-50 px-3 py-1 text-xs font-medium text-forest-700 hover:bg-forest-100 transition-colors"
+                    >
+                      In Stock Only
+                      <X size={12} className="text-forest-500" />
+                    </button>
+                  )}
+                  {searchQuery && (
+                    <button
+                      onClick={() => setSearchQuery('')}
+                      className="inline-flex items-center gap-1.5 rounded-full bg-forest-50 px-3 py-1 text-xs font-medium text-forest-700 hover:bg-forest-100 transition-colors"
+                    >
+                      "{searchQuery}"
+                      <X size={12} className="text-forest-500" />
+                    </button>
+                  )}
+                  <button
+                    onClick={clearAllFilters}
+                    className="ml-auto text-xs font-semibold text-red-600 hover:text-red-700 underline"
+                  >
+                    Clear All
+                  </button>
+                </div>
+              )}
+
               {/* Product grid */}
               {paginatedProducts.length > 0 ? (
                 <>
