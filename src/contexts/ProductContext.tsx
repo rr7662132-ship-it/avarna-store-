@@ -3,6 +3,13 @@ import { Product } from '../types';
 import { saveToStorage, loadFromStorage, STORAGE_KEYS } from '../utils/storage';
 import { generateId } from '../utils/format';
 import { products as defaultProducts } from '../data/products';
+import {
+  isSupabaseConfigured,
+  supabase,
+  getSupabaseProducts,
+  upsertSupabaseProduct,
+  deleteSupabaseProduct,
+} from '../services/supabase';
 
 /* ------------------------------------------------------------------ */
 /*  Types                                                              */
@@ -32,16 +39,68 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ child
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // Initialize products from localStorage, falling back to default data
+  // Initialize products from Supabase (if configured) or localStorage
   useEffect(() => {
-    const stored = loadFromStorage<Product[] | null>(STORAGE_KEYS.PRODUCTS, null);
-    if (stored && stored.length > 0) {
-      setProducts(stored);
-    } else {
-      setProducts(defaultProducts);
-      saveToStorage(STORAGE_KEYS.PRODUCTS, defaultProducts);
+    let isMounted = true;
+
+    async function initProducts() {
+      if (isSupabaseConfigured()) {
+        const cloudProducts = await getSupabaseProducts();
+        if (cloudProducts && cloudProducts.length > 0 && isMounted) {
+          setProducts(cloudProducts);
+          saveToStorage(STORAGE_KEYS.PRODUCTS, cloudProducts);
+          setLoading(false);
+          return;
+        } else if (isMounted && defaultProducts.length > 0) {
+          // Seed initial products to Supabase if table is empty
+          for (const p of defaultProducts) {
+            await upsertSupabaseProduct(p);
+          }
+        }
+      }
+
+      // Fallback to local storage or defaults
+      const stored = loadFromStorage<Product[] | null>(STORAGE_KEYS.PRODUCTS, null);
+      if (stored && stored.length > 0) {
+        if (isMounted) setProducts(stored);
+      } else {
+        if (isMounted) {
+          setProducts(defaultProducts);
+          saveToStorage(STORAGE_KEYS.PRODUCTS, defaultProducts);
+        }
+      }
+      if (isMounted) setLoading(false);
     }
-    setLoading(false);
+
+    initProducts();
+
+    // Setup Realtime subscription if Supabase is connected
+    const client = supabase;
+    if (isSupabaseConfigured() && client) {
+      const channel = client
+        .channel('public:products')
+        .on(
+          'postgres_changes',
+          { event: '*', schema: 'public', table: 'products' },
+          async () => {
+            const updated = await getSupabaseProducts();
+            if (updated && isMounted) {
+              setProducts(updated);
+              saveToStorage(STORAGE_KEYS.PRODUCTS, updated);
+            }
+          }
+        )
+        .subscribe();
+
+      return () => {
+        isMounted = false;
+        client.removeChannel(channel);
+      };
+    }
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   // Persist whenever products change (skip initial empty state)
@@ -63,20 +122,36 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ child
         reviewCount: 0,
       };
       setProducts((prev) => [...prev, newProduct]);
+      if (isSupabaseConfigured()) {
+        upsertSupabaseProduct(newProduct);
+      }
     },
     [],
   );
 
   const updateProduct = useCallback((id: string, updates: Partial<Product>) => {
-    setProducts((prev) =>
-      prev.map((p) => (p.id === id ? { ...p, ...updates } : p)),
-    );
+    setProducts((prev) => {
+      const updated = prev.map((p) => {
+        if (p.id === id) {
+          const merged = { ...p, ...updates };
+          if (isSupabaseConfigured()) {
+            upsertSupabaseProduct(merged);
+          }
+          return merged;
+        }
+        return p;
+      });
+      return updated;
+    });
   }, []);
 
   const deleteProduct = useCallback((id: string) => {
     setProducts((prev) => {
       const updated = prev.filter((p) => p.id !== id);
       saveToStorage(STORAGE_KEYS.PRODUCTS, updated);
+      if (isSupabaseConfigured()) {
+        deleteSupabaseProduct(id);
+      }
       return updated;
     });
   }, []);
