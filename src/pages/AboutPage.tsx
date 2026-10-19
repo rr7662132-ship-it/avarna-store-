@@ -27,12 +27,6 @@ const values = [
   },
 ];
 
-const team = [
-  { name: 'Anika Sharma', role: 'Founder & CEO', initials: 'AS' },
-  { name: 'Rohan Mehta', role: 'Head Horticulturist', initials: 'RM' },
-  { name: 'Priya Nair', role: 'Design Lead', initials: 'PN' },
-  { name: 'Vikram Das', role: 'Operations', initials: 'VD' },
-];
 
 const AboutPage: React.FC = () => {
   return (
@@ -190,30 +184,6 @@ const AboutPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Team Section */}
-      <section className="py-16 md:py-24 bg-gray-50">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14 animate-fade-in">
-            <span className="text-sm font-semibold text-green-700 uppercase tracking-wider">The People Behind AVARNA</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2">Meet Our Team</h2>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {team.map((member, index) => (
-              <div
-                key={member.name}
-                className="text-center animate-slide-up"
-                style={{ animationDelay: `${index * 80}ms` }}
-              >
-                <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-gradient-to-br from-green-400 to-emerald-700 flex items-center justify-center text-white text-xl font-bold shadow-lg">
-                  {member.initials}
-                </div>
-                <h4 className="font-semibold text-gray-900">{member.name}</h4>
-                <p className="text-sm text-gray-500">{member.role}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* CTA Section */}
       <section className="py-16 md:py-24">
