@@ -174,22 +174,6 @@ const LoginPage: React.FC = () => {
               </Link>
             </p>
 
-            {/* Divider */}
-            <div className="relative my-6">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-gray-200" />
-              </div>
-              <div className="relative flex justify-center text-sm">
-                <span className="px-4 bg-white text-gray-400">or</span>
-              </div>
-            </div>
-
-            {/* Demo Hint */}
-            <div className="text-center p-3 bg-amber-50 border border-amber-200 rounded-lg">
-              <p className="text-xs text-amber-700">
-                <span className="font-semibold">Demo Admin:</span> admin@avarna.com / admin123
-              </p>
-            </div>
           </div>
         </div>
 

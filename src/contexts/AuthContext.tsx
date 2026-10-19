@@ -36,8 +36,8 @@ interface AuthContextValue extends AuthState {
 /* ------------------------------------------------------------------ */
 
 const USERS_STORAGE_KEY = 'avarna_users';
-const ADMIN_EMAIL = 'admin@avarna.com';
-const ADMIN_PASSWORD = 'admin123';
+const ADMIN_EMAIL = (import.meta.env.VITE_ADMIN_EMAIL || 'admin@avarna.com').toLowerCase().trim();
+const ADMIN_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD || 'admin123';
 
 /** Simple base-64 "hash" – acceptable for a demo app. */
 function hashPassword(password: string): string {
@@ -50,15 +50,17 @@ function verifyPassword(password: string, hash: string): boolean {
 
 /** Ensure the admin account exists in the stored user list. */
 function seedAdminAccount(users: StoredUser[]): StoredUser[] {
-  const adminExists = users.some((u) => u.email === ADMIN_EMAIL);
-  if (!adminExists) {
+  const adminIndex = users.findIndex((u) => u.email.toLowerCase() === ADMIN_EMAIL);
+  if (adminIndex === -1) {
     users.push({
       id: 'admin-001',
-      name: 'Admin',
+      name: 'Store Owner',
       email: ADMIN_EMAIL,
       passwordHash: hashPassword(ADMIN_PASSWORD),
       createdAt: new Date().toISOString(),
     });
+  } else {
+    users[adminIndex].passwordHash = hashPassword(ADMIN_PASSWORD);
   }
   return users;
 }
