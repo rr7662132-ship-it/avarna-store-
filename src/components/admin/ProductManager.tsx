@@ -1,7 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { useProducts } from '../../contexts/ProductContext';
-import { categories } from '../../data/categories';
 import { formatPrice } from '../../utils/format';
 import { CategoryId, Product } from '../../types';
 import {
@@ -20,7 +19,7 @@ import {
 const ITEMS_PER_PAGE = 10;
 
 const ProductManager: React.FC = () => {
-  const { products, deleteProduct } = useProducts();
+  const { products, categories, deleteProduct } = useProducts();
   const [searchQuery, setSearchQuery] = useState('');
   const [categoryFilter, setCategoryFilter] = useState<string>('all');
   const [currentPage, setCurrentPage] = useState(1);

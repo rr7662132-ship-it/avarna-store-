@@ -21,7 +21,6 @@ import { useProducts } from '../contexts/ProductContext';
 import { useCart } from '../contexts/CartContext';
 import { useWishlist } from '../contexts/WishlistContext';
 import { Product } from '../types';
-import { categories } from '../data/categories';
 import { formatPrice } from '../utils/format';
 import ProductCard from '../components/common/ProductCard';
 import StarRating from '../components/common/StarRating';
@@ -32,7 +31,7 @@ type TabId = 'description' | 'care' | 'info';
 
 const ProductDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const { products, loading } = useProducts();
+  const { products, categories, loading } = useProducts();
   const { addToCart } = useCart();
   const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
 

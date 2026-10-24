@@ -17,6 +17,7 @@ import {
 import { useAuth } from '../../contexts/AuthContext';
 import { useCart } from '../../contexts/CartContext';
 import { useWishlist } from '../../contexts/WishlistContext';
+import { useProducts } from '../../contexts/ProductContext';
 import SearchBar from '../common/SearchBar';
 
 const navLinks = [
@@ -24,22 +25,18 @@ const navLinks = [
   { label: 'Shop', path: '/shop' },
 ];
 
-const categories = [
-  { label: 'Indoor Plants', path: '/shop?category=indoor' },
-  { label: 'Outdoor Plants', path: '/shop?category=outdoor' },
-  { label: 'Flowering Plants', path: '/shop?category=flowering' },
-  { label: 'Succulents & Cacti', path: '/shop?category=succulents' },
-  { label: 'Air-Purifying Plants', path: '/shop?category=air-purifying' },
-  { label: 'Low-Maintenance', path: '/shop?category=low-maintenance' },
-  { label: 'Pots & Accessories', path: '/shop?category=pots-accessories' },
-];
-
 const Header: React.FC = () => {
   const { user, logout, isAdmin } = useAuth();
   const { itemCount: cartCount } = useCart();
   const { items: wishlistItems } = useWishlist();
+  const { categories: dynamicCategories } = useProducts();
   const navigate = useNavigate();
   const location = useLocation();
+
+  const categories = dynamicCategories.map((c) => ({
+    label: c.name,
+    path: `/shop?category=${c.id}`,
+  }));
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [categoriesOpen, setCategoriesOpen] = useState(false);

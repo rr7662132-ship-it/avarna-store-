@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Product, CategoryId } from '../../types';
-import { categories } from '../../data/categories';
+import { useProducts } from '../../contexts/ProductContext';
 import { generateId } from '../../utils/format';
 import {
   Save,
@@ -41,6 +41,7 @@ const sunlightOptions = [
 const difficultyOptions = ['Easy', 'Moderate', 'Expert'];
 
 const ProductForm: React.FC<ProductFormProps> = ({ product, onSave, onCancel }) => {
+  const { categories } = useProducts();
   const isEditing = !!product;
 
   const [formData, setFormData] = useState({

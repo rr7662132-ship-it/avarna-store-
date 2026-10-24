@@ -12,7 +12,6 @@ import {
 } from 'lucide-react';
 import { useProducts } from '../contexts/ProductContext';
 import { Product, CategoryId } from '../types';
-import { categories } from '../data/categories';
 import ProductCard from '../components/common/ProductCard';
 import Layout from '../components/layout/Layout';
 import LoadingSpinner from '../components/common/LoadingSpinner';
@@ -79,7 +78,7 @@ const FilterSection: React.FC<{
 /*  Main component                                                    */
 /* ------------------------------------------------------------------ */
 const ShopPage: React.FC = () => {
-  const { products, loading } = useProducts();
+  const { products, categories, loading } = useProducts();
   const [searchParams, setSearchParams] = useSearchParams();
 
   // --- Filter state ------------------------------------------------

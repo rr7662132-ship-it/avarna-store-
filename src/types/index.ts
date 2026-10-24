@@ -35,7 +35,8 @@ export type CategoryId =
   | 'succulents'
   | 'air-purifying'
   | 'low-maintenance'
-  | 'pots-accessories';
+  | 'pots-accessories'
+  | (string & {});
 
 export interface Category {
   id: CategoryId;

@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { categories } from '../../data/categories';
+import { useProducts } from '../../contexts/ProductContext';
 
 const CategoryGrid: React.FC = () => {
+  const { categories } = useProducts();
   return (
     <section className="py-20 lg:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

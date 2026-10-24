@@ -1,8 +1,9 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
-import { Product } from '../types';
+import { Product, Category } from '../types';
 import { saveToStorage, loadFromStorage, STORAGE_KEYS } from '../utils/storage';
 import { generateId } from '../utils/format';
 import { products as defaultProducts } from '../data/products';
+import { categories as defaultCategories } from '../data/categories';
 import {
   isSupabaseConfigured,
   supabase,
@@ -17,10 +18,14 @@ import {
 
 interface ProductContextValue {
   products: Product[];
+  categories: Category[];
   loading: boolean;
   addProduct: (product: Omit<Product, 'id' | 'createdAt' | 'rating' | 'reviewCount'>) => void;
   updateProduct: (id: string, updates: Partial<Product>) => void;
   deleteProduct: (id: string) => void;
+  addCategory: (category: Omit<Category, 'productCount'>) => void;
+  updateCategory: (id: string, updates: Partial<Category>) => void;
+  deleteCategory: (id: string) => void;
   getProduct: (id: string) => Product | undefined;
   getProductsByCategory: (category: string) => Product[];
   searchProducts: (query: string) => Product[];
@@ -37,7 +42,17 @@ const ProductContext = createContext<ProductContextValue | undefined>(undefined)
 
 export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [products, setProducts] = useState<Product[]>([]);
+  const [categories, setCategories] = useState<Category[]>(() => {
+    return loadFromStorage<Category[]>('avarna_categories', defaultCategories);
+  });
   const [loading, setLoading] = useState(true);
+
+  // Persist categories whenever updated
+  useEffect(() => {
+    if (categories && categories.length > 0) {
+      saveToStorage('avarna_categories', categories);
+    }
+  }, [categories]);
 
   // Initialize products from Supabase (if configured) or localStorage
   useEffect(() => {
@@ -156,6 +171,43 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ child
     });
   }, []);
 
+  const addCategory = useCallback((newCat: Omit<Category, 'productCount'>) => {
+    const rawId = newCat.id && newCat.id.trim() ? newCat.id : newCat.name;
+    const slug = rawId.toLowerCase().trim().replace(/[^a-z0-9-]/g, '-').replace(/-+/g, '-');
+
+    const categoryItem: Category = {
+      id: slug || generateId(),
+      name: newCat.name.trim(),
+      description: newCat.description.trim(),
+      image: newCat.image.trim() || 'https://images.unsplash.com/photo-1463936575829-25148e1db1b8?w=600&h=400&fit=crop',
+    };
+
+    setCategories((prev) => {
+      const existsIndex = prev.findIndex((c) => c.id === categoryItem.id);
+      const updated = existsIndex !== -1
+        ? prev.map((c) => (c.id === categoryItem.id ? categoryItem : c))
+        : [...prev, categoryItem];
+      saveToStorage('avarna_categories', updated);
+      return updated;
+    });
+  }, []);
+
+  const updateCategory = useCallback((id: string, updates: Partial<Category>) => {
+    setCategories((prev) => {
+      const updated = prev.map((c) => (c.id === id ? { ...c, ...updates } : c));
+      saveToStorage('avarna_categories', updated);
+      return updated;
+    });
+  }, []);
+
+  const deleteCategory = useCallback((id: string) => {
+    setCategories((prev) => {
+      const updated = prev.filter((c) => c.id !== id);
+      saveToStorage('avarna_categories', updated);
+      return updated;
+    });
+  }, []);
+
   const getProduct = useCallback(
     (id: string) => products.find((p) => p.id === id),
     [products],
@@ -202,10 +254,14 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
   const value: ProductContextValue = {
     products,
+    categories,
     loading,
     addProduct,
     updateProduct,
     deleteProduct,
+    addCategory,
+    updateCategory,
+    deleteCategory,
     getProduct,
     getProductsByCategory,
     searchProducts,
