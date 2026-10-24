@@ -209,6 +209,17 @@ const Header: React.FC = () => {
                 )}
               </Link>
 
+              {/* Admin Quick Link */}
+              {isAdmin && (
+                <Link
+                  to="/admin"
+                  className="hidden md:inline-flex items-center gap-1.5 px-3 py-1 bg-forest-700 hover:bg-forest-800 text-white text-xs font-semibold rounded-full shadow-sm transition-colors"
+                >
+                  <LayoutDashboard className="h-3.5 w-3.5" />
+                  <span>Admin Panel</span>
+                </Link>
+              )}
+
               {/* User Menu */}
               <div ref={userMenuRef} className="relative hidden sm:block">
                 <button

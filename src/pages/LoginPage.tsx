@@ -5,7 +5,7 @@ import Layout from '../components/layout/Layout';
 import { Mail, Lock, Eye, EyeOff, Leaf, LogIn } from 'lucide-react';
 
 const LoginPage: React.FC = () => {
-  const { user, login } = useAuth();
+  const { user, isAdmin, login } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -20,16 +20,20 @@ const LoginPage: React.FC = () => {
 
   useEffect(() => {
     if (user) {
-      navigate('/', { replace: true });
+      if (isAdmin || user.role === 'admin' || user.email.toLowerCase() === 'admin@avarna.com') {
+        navigate('/admin', { replace: true });
+      } else {
+        navigate('/', { replace: true });
+      }
     }
-  }, [user, navigate]);
+  }, [user, isAdmin, navigate]);
 
   const validateForm = (): boolean => {
     if (!email.trim()) {
       setError('Email is required');
       return false;
     }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
       setError('Please enter a valid email address');
       return false;
     }
@@ -50,7 +54,11 @@ const LoginPage: React.FC = () => {
     try {
       const success = await login(email, password);
       if (success) {
-        navigate(from, { replace: true });
+        if (email.trim().toLowerCase() === 'admin@avarna.com') {
+          navigate('/admin', { replace: true });
+        } else {
+          navigate(from === '/login' ? '/' : from, { replace: true });
+        }
       } else {
         setError('Invalid email or password. Please try again.');
       }

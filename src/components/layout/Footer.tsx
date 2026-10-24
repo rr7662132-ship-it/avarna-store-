@@ -182,6 +182,12 @@ const Footer: React.FC = () => {
             >
               Privacy Policy
             </Link>
+            <Link
+              to="/admin"
+              className="text-xs text-gray-500 transition-colors hover:text-white"
+            >
+              Admin Portal
+            </Link>
           </div>
         </div>
       </div>

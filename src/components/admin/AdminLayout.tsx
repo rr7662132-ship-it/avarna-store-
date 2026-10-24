@@ -15,6 +15,11 @@ import {
   Leaf,
   ShieldAlert,
   Home,
+  KeyRound,
+  CheckCircle2,
+  AlertCircle,
+  Eye,
+  EyeOff,
 } from 'lucide-react';
 
 const sidebarLinks = [
@@ -25,13 +30,47 @@ const sidebarLinks = [
 ];
 
 const AdminLayout: React.FC = () => {
-  const { user, logout, isAuthenticated, isAdmin } = useAuth();
+  const { user, logout, isAuthenticated, isAdmin, changeAdminPassword } = useAuth();
   const navigate = useNavigate();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [passwordModalOpen, setPasswordModalOpen] = useState(false);
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [passwordStatus, setPasswordStatus] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
 
   const handleLogout = () => {
     logout();
     navigate('/');
+  };
+
+  const handlePasswordSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newPassword.trim()) {
+      setPasswordStatus({ type: 'error', message: 'Password cannot be blank.' });
+      return;
+    }
+    if (newPassword.trim().length < 4) {
+      setPasswordStatus({ type: 'error', message: 'Password must be at least 4 characters long.' });
+      return;
+    }
+    if (newPassword !== confirmPassword) {
+      setPasswordStatus({ type: 'error', message: 'Passwords do not match.' });
+      return;
+    }
+
+    const success = changeAdminPassword(newPassword);
+    if (success) {
+      setPasswordStatus({ type: 'success', message: 'Admin password successfully updated!' });
+      setTimeout(() => {
+        setPasswordModalOpen(false);
+        setNewPassword('');
+        setConfirmPassword('');
+        setPasswordStatus(null);
+      }, 1500);
+    } else {
+      setPasswordStatus({ type: 'error', message: 'Failed to update password.' });
+    }
   };
 
   // Access denied if not admin
@@ -44,15 +83,14 @@ const AdminLayout: React.FC = () => {
           </div>
           <h1 className="text-2xl font-bold text-gray-900 mb-2">Access Denied</h1>
           <p className="text-gray-600 mb-6">
-            You do not have permission to access the admin dashboard. Please contact an administrator
-            if you believe this is an error.
+            You do not have permission to access the admin dashboard.
           </p>
           <Link
-            to="/"
+            to="/admin"
             className="inline-flex items-center gap-2 bg-green-800 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors"
           >
-            <Home className="w-4 h-4" />
-            Back to Home
+            <KeyRound className="w-4 h-4" />
+            Sign in as Admin
           </Link>
         </div>
       </div>
@@ -116,16 +154,23 @@ const AdminLayout: React.FC = () => {
 
         {/* Sidebar Footer */}
         <div className="px-3 py-4 border-t border-green-800 space-y-1">
+          <button
+            onClick={() => setPasswordModalOpen(true)}
+            className="w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium text-green-200 hover:bg-green-900 hover:text-white transition-colors text-left"
+          >
+            <KeyRound className="w-5 h-5 flex-shrink-0" />
+            Change Password
+          </button>
           <Link
             to="/"
-            className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-green-200 hover:bg-green-900 hover:text-white transition-colors"
+            className="flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium text-green-200 hover:bg-green-900 hover:text-white transition-colors"
           >
             <Store className="w-5 h-5 flex-shrink-0" />
             Back to Store
           </Link>
           <button
             onClick={handleLogout}
-            className="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-green-200 hover:bg-red-800 hover:text-white transition-colors"
+            className="w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium text-green-200 hover:bg-red-800 hover:text-white transition-colors"
           >
             <LogOut className="w-5 h-5 flex-shrink-0" />
             Logout
@@ -147,31 +192,34 @@ const AdminLayout: React.FC = () => {
                 <Menu className="w-6 h-6" />
               </button>
               <nav className="hidden sm:flex items-center gap-1 text-sm text-gray-500">
-                <Link to="/admin" className="hover:text-green-700 transition-colors">
+                <Link to="/admin" className="hover:text-green-700 transition-colors font-medium">
                   Admin
                 </Link>
                 <ChevronRight className="w-4 h-4" />
-                <span className="text-gray-900 font-medium">Dashboard</span>
+                <span className="text-gray-900 font-medium">Store Dashboard</span>
               </nav>
             </div>
 
-            {/* Right: Notification + User */}
-            <div className="flex items-center gap-4">
-              <button className="relative text-gray-500 hover:text-gray-700 transition-colors">
-                <Bell className="w-5 h-5" />
-                <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center">
-                  3
-                </span>
+            {/* Right: Actions + User */}
+            <div className="flex items-center gap-3 sm:gap-4">
+              <button
+                onClick={() => setPasswordModalOpen(true)}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-semibold rounded-lg transition-colors"
+                title="Change admin password"
+              >
+                <KeyRound className="w-3.5 h-3.5" />
+                <span className="hidden sm:inline">Change Password</span>
               </button>
+
               <div className="hidden sm:flex items-center gap-2">
                 <div className="w-8 h-8 bg-green-800 text-white rounded-full flex items-center justify-center text-sm font-semibold">
                   {user?.name?.charAt(0).toUpperCase() || 'A'}
                 </div>
-                <span className="text-sm font-medium text-gray-700">{user?.name || 'Admin'}</span>
+                <span className="text-sm font-medium text-gray-700">{user?.name || 'Administrator'}</span>
               </div>
               <button
                 onClick={handleLogout}
-                className="hidden sm:flex text-gray-500 hover:text-red-600 transition-colors"
+                className="text-gray-500 hover:text-red-600 transition-colors"
                 title="Logout"
               >
                 <LogOut className="w-5 h-5" />
@@ -185,6 +233,108 @@ const AdminLayout: React.FC = () => {
           <Outlet />
         </main>
       </div>
+
+      {/* Change Password Modal */}
+      {passwordModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 animate-fade-in backdrop-blur-sm">
+          <div className="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-gray-100 relative">
+            <button
+              onClick={() => {
+                setPasswordModalOpen(false);
+                setPasswordStatus(null);
+              }}
+              className="absolute top-4 right-4 text-gray-400 hover:text-gray-600"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-10 bg-forest-50 text-forest-700 rounded-xl flex items-center justify-center">
+                <KeyRound className="w-5 h-5 text-forest-700" />
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-gray-900">Change Admin Password</h3>
+                <p className="text-xs text-gray-500">Update the secret password for admin access</p>
+              </div>
+            </div>
+
+            {passwordStatus && (
+              <div
+                className={`mb-4 p-3 rounded-xl text-xs flex items-center gap-2 ${
+                  passwordStatus.type === 'success'
+                    ? 'bg-emerald-50 text-emerald-800 border border-emerald-200'
+                    : 'bg-red-50 text-red-800 border border-red-200'
+                }`}
+              >
+                {passwordStatus.type === 'success' ? (
+                  <CheckCircle2 className="w-4 h-4 flex-shrink-0" />
+                ) : (
+                  <AlertCircle className="w-4 h-4 flex-shrink-0" />
+                )}
+                <span>{passwordStatus.message}</span>
+              </div>
+            )}
+
+            <form onSubmit={handlePasswordSubmit} className="space-y-4">
+              <div>
+                <label className="block text-xs font-semibold uppercase text-gray-600 mb-1">
+                  New Password
+                </label>
+                <div className="relative">
+                  <input
+                    type={showPassword ? 'text' : 'password'}
+                    value={newPassword}
+                    onChange={(e) => setNewPassword(e.target.value)}
+                    placeholder="Enter at least 4 characters"
+                    required
+                    className="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:bg-white focus:ring-2 focus:ring-forest-600 focus:border-forest-600 outline-none pr-10"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                  >
+                    {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                  </button>
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold uppercase text-gray-600 mb-1">
+                  Confirm New Password
+                </label>
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  placeholder="Re-enter new password"
+                  required
+                  className="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:bg-white focus:ring-2 focus:ring-forest-600 focus:border-forest-600 outline-none"
+                />
+              </div>
+
+              <div className="flex gap-3 pt-2">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setPasswordModalOpen(false);
+                    setPasswordStatus(null);
+                  }}
+                  className="flex-1 px-4 py-2.5 border border-gray-200 rounded-xl text-sm font-medium text-gray-600 hover:bg-gray-50"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="flex-1 px-4 py-2.5 bg-forest-700 hover:bg-forest-800 text-white rounded-xl text-sm font-semibold shadow-sm transition-colors"
+                >
+                  Save Password
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
