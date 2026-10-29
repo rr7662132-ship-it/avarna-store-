@@ -6,6 +6,7 @@ import { products as defaultProducts } from '../data/products';
 import { categories as defaultCategories } from '../data/categories';
 import {
   isSupabaseConfigured,
+  getSupabaseClient,
   supabase,
   getSupabaseProducts,
   upsertSupabaseProduct,
@@ -90,7 +91,7 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ child
     initProducts();
 
     // Setup Realtime subscription if Supabase is connected
-    const client = supabase;
+    const client = getSupabaseClient();
     if (isSupabaseConfigured() && client) {
       const channel = client
         .channel('public:products')

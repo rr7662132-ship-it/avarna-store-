@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { useProducts } from '../../contexts/ProductContext';
 import { useOrders } from '../../contexts/OrderContext';
 import { formatPrice, formatDate, getStatusColor, getStatusLabel } from '../../utils/format';
+import { isSupabaseConfigured } from '../../services/supabase';
+import CloudSyncModal from './CloudSyncModal';
 import {
   Package,
   ShoppingCart,
@@ -14,12 +16,15 @@ import {
   ArrowRight,
   TrendingUp,
   RefreshCw,
+  Cloud,
 } from 'lucide-react';
 
 const AdminDashboard: React.FC = () => {
   const { user } = useAuth();
   const { products, updateProduct } = useProducts();
   const { orders } = useOrders();
+  const [cloudSyncOpen, setCloudSyncOpen] = useState(false);
+  const isCloudActive = isSupabaseConfigured();
 
   // Stats calculations
   const totalProducts = products.length;
@@ -83,10 +88,23 @@ const AdminDashboard: React.FC = () => {
           </h1>
           <p className="text-gray-500 mt-1">Here's what's happening with your store today.</p>
         </div>
-        <div className="flex gap-3">
+        <div className="flex flex-wrap items-center gap-2.5">
+          <button
+            type="button"
+            onClick={() => setCloudSyncOpen(true)}
+            className={`inline-flex items-center gap-2 px-3.5 py-2 rounded-lg text-sm font-semibold transition-all border ${
+              isCloudActive
+                ? 'bg-emerald-50 text-emerald-800 border-emerald-300 hover:bg-emerald-100'
+                : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
+            }`}
+          >
+            <Cloud className={`w-4 h-4 ${isCloudActive ? 'text-emerald-600' : 'text-gray-400'}`} />
+            <span>{isCloudActive ? '🟢 Cloud Sync Active' : '☁️ Cloud Sync (Multi-Device)'}</span>
+          </button>
+
           <Link
             to="/admin/products/new"
-            className="inline-flex items-center gap-2 bg-green-800 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors text-sm font-medium"
+            className="inline-flex items-center gap-2 bg-green-800 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors text-sm font-medium shadow-sm"
           >
             <Plus className="w-4 h-4" />
             Add Product
@@ -100,6 +118,30 @@ const AdminDashboard: React.FC = () => {
           </Link>
         </div>
       </div>
+
+      {/* Cloud Sync Announcement Banner */}
+      {!isCloudActive && (
+        <div className="bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-2xl p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-sm">
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center flex-shrink-0">
+              <Cloud className="w-5 h-5" />
+            </div>
+            <div>
+              <h4 className="text-sm font-bold text-amber-900">Multi-Device Cloud Sync Available</h4>
+              <p className="text-xs text-amber-700 mt-0.5">
+                Want image and catalog changes to reflect instantly on every visitor's mobile and desktop? Connect your free Supabase cloud database or export to GitHub with 1 click.
+              </p>
+            </div>
+          </div>
+          <button
+            type="button"
+            onClick={() => setCloudSyncOpen(true)}
+            className="px-4 py-2 bg-amber-700 hover:bg-amber-800 text-white rounded-xl text-xs font-semibold whitespace-nowrap transition-colors shadow-sm"
+          >
+            Setup Multi-Device Sync →
+          </button>
+        </div>
+      )}
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -244,6 +286,9 @@ const AdminDashboard: React.FC = () => {
           )}
         </div>
       </div>
+
+      {/* Multi-Device Cloud Sync Modal */}
+      <CloudSyncModal isOpen={cloudSyncOpen} onClose={() => setCloudSyncOpen(false)} />
     </div>
   );
 };

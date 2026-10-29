@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
+import CloudSyncModal from './CloudSyncModal';
 import {
   LayoutDashboard,
   Package,
@@ -20,6 +21,7 @@ import {
   AlertCircle,
   Eye,
   EyeOff,
+  Cloud,
 } from 'lucide-react';
 
 const sidebarLinks = [
@@ -34,6 +36,7 @@ const AdminLayout: React.FC = () => {
   const navigate = useNavigate();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [passwordModalOpen, setPasswordModalOpen] = useState(false);
+  const [cloudSyncModalOpen, setCloudSyncModalOpen] = useState(false);
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -154,6 +157,16 @@ const AdminLayout: React.FC = () => {
 
         {/* Sidebar Footer */}
         <div className="px-3 py-4 border-t border-green-800 space-y-1">
+          <button
+            onClick={() => {
+              setCloudSyncModalOpen(true);
+              setSidebarOpen(false);
+            }}
+            className="w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium text-emerald-300 hover:bg-green-900 hover:text-white transition-colors text-left"
+          >
+            <Cloud className="w-5 h-5 flex-shrink-0" />
+            Cloud Sync & Multi-Device
+          </button>
           <button
             onClick={() => setPasswordModalOpen(true)}
             className="w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium text-green-200 hover:bg-green-900 hover:text-white transition-colors text-left"
@@ -335,6 +348,12 @@ const AdminLayout: React.FC = () => {
           </div>
         </div>
       )}
+
+      {/* Cloud Sync & Multi-Device Modal */}
+      <CloudSyncModal
+        isOpen={cloudSyncModalOpen}
+        onClose={() => setCloudSyncModalOpen(false)}
+      />
     </div>
   );
 };

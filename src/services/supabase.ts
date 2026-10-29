@@ -1,33 +1,119 @@
-import { createClient } from '@supabase/supabase-js';
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { Product } from '../types';
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || '';
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || '';
-
-/**
- * Checks whether user has provided valid Supabase credentials
- */
-export const isSupabaseConfigured = (): boolean => {
+function isValidUrl(url: string): boolean {
   return Boolean(
-    supabaseUrl &&
-    supabaseAnonKey &&
-    supabaseUrl.startsWith('https://') &&
-    !supabaseUrl.includes('placeholder') &&
-    !supabaseUrl.includes('your-project-id')
+    url &&
+    url.startsWith('https://') &&
+    !url.includes('placeholder') &&
+    !url.includes('your-project-id')
   );
+}
+
+export function getActiveSupabaseCredentials(): { url: string; key: string } {
+  const envUrl = (import.meta.env.VITE_SUPABASE_URL || '').trim();
+  const envKey = (import.meta.env.VITE_SUPABASE_ANON_KEY || '').trim();
+  if (isValidUrl(envUrl) && envKey) {
+    return { url: envUrl, key: envKey };
+  }
+
+  try {
+    const localUrl = (localStorage.getItem('avarna_supabase_url') || '').trim();
+    const localKey = (localStorage.getItem('avarna_supabase_key') || '').trim();
+    if (isValidUrl(localUrl) && localKey) {
+      return { url: localUrl, key: localKey };
+    }
+  } catch {
+    // localStorage not available
+  }
+
+  return { url: '', key: '' };
+}
+
+let activeClient: SupabaseClient | null = null;
+
+function initClient(): SupabaseClient | null {
+  const creds = getActiveSupabaseCredentials();
+  if (isValidUrl(creds.url) && creds.key) {
+    try {
+      return createClient(creds.url, creds.key);
+    } catch (err) {
+      console.error('Failed to init Supabase client:', err);
+      return null;
+    }
+  }
+  return null;
+}
+
+activeClient = initClient();
+
+export const isSupabaseConfigured = (): boolean => {
+  const creds = getActiveSupabaseCredentials();
+  return isValidUrl(creds.url) && Boolean(creds.key);
 };
 
-export const supabase = isSupabaseConfigured()
-  ? createClient(supabaseUrl, supabaseAnonKey)
-  : null;
+export const getSupabaseClient = (): SupabaseClient | null => {
+  if (!activeClient) {
+    activeClient = initClient();
+  }
+  return activeClient;
+};
+
+export const supabase = activeClient;
+
+export function saveSupabaseConfig(url: string, key: string): boolean {
+  if (!isValidUrl(url) || !key.trim()) return false;
+  try {
+    localStorage.setItem('avarna_supabase_url', url.trim());
+    localStorage.setItem('avarna_supabase_key', key.trim());
+    activeClient = createClient(url.trim(), key.trim());
+    return true;
+  } catch (err) {
+    console.error('Failed to save Supabase config:', err);
+    return false;
+  }
+}
+
+export function clearSupabaseConfig(): void {
+  try {
+    localStorage.removeItem('avarna_supabase_url');
+    localStorage.removeItem('avarna_supabase_key');
+    activeClient = null;
+  } catch (err) {
+    console.error('Failed to clear Supabase config:', err);
+  }
+}
+
+export async function testSupabaseConnection(
+  url: string,
+  key: string
+): Promise<{ success: boolean; message: string }> {
+  try {
+    if (!isValidUrl(url)) {
+      return { success: false, message: 'Invalid URL. Must start with https:// and be a valid project URL.' };
+    }
+    if (!key.trim()) {
+      return { success: false, message: 'Anon Key cannot be blank.' };
+    }
+    const tempClient = createClient(url.trim(), key.trim());
+    const { error } = await tempClient.from('products').select('id').limit(1);
+    if (error) {
+      return { success: false, message: `Database error: ${error.message}. Ensure table "products" exists.` };
+    }
+    return { success: true, message: 'Connected to Supabase successfully!' };
+  } catch (err: any) {
+    return { success: false, message: err.message || 'Connection failed.' };
+  }
+}
 
 /**
  * Fetch all products from Supabase
  */
 export async function getSupabaseProducts(): Promise<Product[] | null> {
-  if (!supabase) return null;
+  const client = getSupabaseClient();
+  if (!client) return null;
   try {
-    const { data, error } = await supabase
+    const { data, error } = await client
       .from('products')
       .select('*')
       .order('created_at', { ascending: false });
@@ -78,7 +164,8 @@ export async function getSupabaseProducts(): Promise<Product[] | null> {
  * Upsert a product to Supabase
  */
 export async function upsertSupabaseProduct(product: Product): Promise<boolean> {
-  if (!supabase) return false;
+  const client = getSupabaseClient();
+  if (!client) return false;
   try {
     const row = {
       id: product.id,
@@ -110,7 +197,7 @@ export async function upsertSupabaseProduct(product: Product): Promise<boolean> 
       created_at: product.createdAt,
     };
 
-    const { error } = await supabase.from('products').upsert(row);
+    const { error } = await client.from('products').upsert(row);
     if (error) {
       console.error('Error saving to Supabase:', error.message);
       return false;
@@ -126,9 +213,10 @@ export async function upsertSupabaseProduct(product: Product): Promise<boolean> 
  * Delete a product from Supabase
  */
 export async function deleteSupabaseProduct(id: string): Promise<boolean> {
-  if (!supabase) return false;
+  const client = getSupabaseClient();
+  if (!client) return false;
   try {
-    const { error } = await supabase.from('products').delete().eq('id', id);
+    const { error } = await client.from('products').delete().eq('id', id);
     if (error) {
       console.error('Error deleting from Supabase:', error.message);
       return false;
@@ -138,4 +226,18 @@ export async function deleteSupabaseProduct(id: string): Promise<boolean> {
     console.error('Failed to delete product from Supabase:', err);
     return false;
   }
+}
+
+/**
+ * Push all local products to Supabase in batch
+ */
+export async function syncAllProductsToSupabase(products: Product[]): Promise<{ success: boolean; count: number }> {
+  const client = getSupabaseClient();
+  if (!client || products.length === 0) return { success: false, count: 0 };
+  let count = 0;
+  for (const p of products) {
+    const ok = await upsertSupabaseProduct(p);
+    if (ok) count++;
+  }
+  return { success: count > 0, count };
 }

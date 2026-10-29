@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Product, CategoryId } from '../../types';
 import { useProducts } from '../../contexts/ProductContext';
 import { generateId } from '../../utils/format';
@@ -18,6 +18,9 @@ import {
   TrendingUp,
   Sparkles,
   Tag,
+  Upload,
+  Camera,
+  Check,
 } from 'lucide-react';
 
 interface ProductFormProps {
@@ -69,6 +72,57 @@ const ProductForm: React.FC<ProductFormProps> = ({ product, onSave, onCancel }) 
 
   const [errors, setErrors] = useState<FormErrors>({});
   const [newImageUrl, setNewImageUrl] = useState('');
+  const [uploadingImage, setUploadingImage] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const compressAndSetImage = (file: File) => {
+    setUploadingImage(true);
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const img = new Image();
+      img.onload = () => {
+        let width = img.width;
+        let height = img.height;
+        const maxDimension = 900;
+        if (width > maxDimension || height > maxDimension) {
+          if (width > height) {
+            height = Math.round((height * maxDimension) / width);
+            width = maxDimension;
+          } else {
+            width = Math.round((width * maxDimension) / height);
+            height = maxDimension;
+          }
+        }
+        const canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        if (ctx) {
+          ctx.drawImage(img, 0, 0, width, height);
+          const compressed = canvas.toDataURL('image/jpeg', 0.85);
+          setFormData((prev) => ({ ...prev, image: compressed }));
+        } else {
+          setFormData((prev) => ({ ...prev, image: e.target?.result as string }));
+        }
+        setUploadingImage(false);
+      };
+      img.onerror = () => {
+        setUploadingImage(false);
+      };
+      img.src = e.target?.result as string;
+    };
+    reader.onerror = () => {
+      setUploadingImage(false);
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      compressAndSetImage(file);
+    }
+  };
 
   // Pre-fill form when editing
   useEffect(() => {
@@ -346,37 +400,95 @@ const ProductForm: React.FC<ProductFormProps> = ({ product, onSave, onCancel }) 
             Images
           </h2>
 
-          {/* Main Image URL */}
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Main Image URL <span className="text-red-500">*</span>
+          {/* Main Image Source */}
+          <div className="mb-5">
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Main Product Image <span className="text-red-500">*</span>
             </label>
+
+            {/* Upload or URL Controls */}
+            <div className="flex flex-wrap items-center gap-3 mb-3">
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/*"
+                onChange={handleFileChange}
+                className="hidden"
+              />
+
+              <button
+                type="button"
+                onClick={() => fileInputRef.current?.click()}
+                disabled={uploadingImage}
+                className="inline-flex items-center gap-2 px-4 py-2.5 bg-forest-700 hover:bg-forest-800 text-white rounded-xl text-xs sm:text-sm font-semibold transition-all shadow-sm"
+              >
+                {uploadingImage ? (
+                  <>
+                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                    <span>Compressing & Loading...</span>
+                  </>
+                ) : (
+                  <>
+                    <Upload className="w-4 h-4" />
+                    <span>Upload from Phone Camera / Device</span>
+                  </>
+                )}
+              </button>
+
+              <span className="text-xs text-gray-400">or enter image web URL below</span>
+            </div>
+
             <input
               type="text"
               name="image"
               value={formData.image}
               onChange={handleChange}
-              placeholder="https://example.com/plant.jpg"
+              placeholder="https://images.unsplash.com/... or data:image/..."
               className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none text-sm ${
                 errors.image ? 'border-red-300 bg-red-50' : 'border-gray-300'
               }`}
             />
             {errors.image && <p className="text-red-500 text-xs mt-1">{errors.image}</p>}
+
+            {/* Quick Presets */}
+            <div className="mt-3">
+              <p className="text-xs text-gray-500 mb-1.5 font-medium">Quick Botanical Presets:</p>
+              <div className="flex flex-wrap gap-1.5">
+                {[
+                  { name: 'Monstera', url: 'https://images.unsplash.com/photo-1614594975525-e45190c55d0b?w=800&auto=format&fit=crop&q=80' },
+                  { name: 'Snake Plant', url: 'https://images.unsplash.com/photo-1593482892290-f54927ae1bf6?w=800&auto=format&fit=crop&q=80' },
+                  { name: 'Peace Lily', url: 'https://images.unsplash.com/photo-1593691509543-c55fb32e7355?w=800&auto=format&fit=crop&q=80' },
+                  { name: 'Fiddle Leaf Fig', url: 'https://images.unsplash.com/photo-1545241047-6083a3684587?w=800&auto=format&fit=crop&q=80' },
+                  { name: 'ZZ Plant', url: 'https://images.unsplash.com/photo-1632307849688-92736173a14e?w=800&auto=format&fit=crop&q=80' },
+                  { name: 'Money Plant', url: 'https://images.unsplash.com/photo-1596724817753-3171f1146244?w=800&auto=format&fit=crop&q=80' },
+                  { name: 'Areca Palm', url: 'https://images.unsplash.com/photo-1616046229478-9901c5536a45?w=800&auto=format&fit=crop&q=80' },
+                ].map((preset) => (
+                  <button
+                    key={preset.name}
+                    type="button"
+                    onClick={() => setFormData((prev) => ({ ...prev, image: preset.url }))}
+                    className="px-2.5 py-1 text-xs bg-gray-100 hover:bg-forest-100 hover:text-forest-800 text-gray-700 rounded-lg transition-colors border border-gray-200"
+                  >
+                    {preset.name}
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
 
           {/* Image Preview */}
           {formData.image && (
-            <div className="mb-4">
-              <p className="text-sm text-gray-500 mb-2 flex items-center gap-1">
-                <Eye className="w-4 h-4" /> Preview
+            <div className="mb-5 p-3 bg-gray-50 rounded-2xl border border-gray-200 inline-block">
+              <p className="text-xs text-gray-500 mb-2 flex items-center gap-1 font-semibold">
+                <Eye className="w-3.5 h-3.5" /> Image Live Preview
               </p>
               <img
                 src={formData.image}
                 alt="Preview"
-                className="w-32 h-32 object-cover rounded-xl border border-gray-200"
+                className="w-36 h-36 object-cover rounded-xl border border-gray-300 shadow-sm"
                 onError={(e) => {
                   (e.target as HTMLImageElement).src =
-                    'https://via.placeholder.com/128?text=Invalid+URL';
+                    'https://via.placeholder.com/144?text=Invalid+Image+URL';
                 }}
               />
             </div>

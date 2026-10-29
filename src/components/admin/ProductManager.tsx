@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { useProducts } from '../../contexts/ProductContext';
 import { formatPrice } from '../../utils/format';
 import { CategoryId, Product } from '../../types';
+import { isSupabaseConfigured } from '../../services/supabase';
+import CloudSyncModal from './CloudSyncModal';
 import {
   Plus,
   Search,
@@ -14,6 +16,7 @@ import {
   ChevronLeft,
   ChevronRight,
   Filter,
+  Cloud,
 } from 'lucide-react';
 
 const ITEMS_PER_PAGE = 10;
@@ -24,6 +27,8 @@ const ProductManager: React.FC = () => {
   const [categoryFilter, setCategoryFilter] = useState<string>('all');
   const [currentPage, setCurrentPage] = useState(1);
   const [deleteModal, setDeleteModal] = useState<Product | null>(null);
+  const [cloudSyncModalOpen, setCloudSyncModalOpen] = useState(false);
+  const isCloudActive = isSupabaseConfigured();
 
   // Filter and search products
   const filteredProducts = useMemo(() => {
@@ -64,13 +69,28 @@ const ProductManager: React.FC = () => {
           <h1 className="text-2xl font-bold text-gray-900">Manage Products</h1>
           <p className="text-sm text-gray-500 mt-1">{filteredProducts.length} products found</p>
         </div>
-        <Link
-          to="/admin/products/new"
-          className="inline-flex items-center gap-2 bg-green-800 text-white px-4 py-2.5 rounded-lg hover:bg-green-700 transition-colors text-sm font-medium"
-        >
-          <Plus className="w-4 h-4" />
-          Add New Product
-        </Link>
+        <div className="flex flex-wrap items-center gap-2.5">
+          <button
+            type="button"
+            onClick={() => setCloudSyncModalOpen(true)}
+            className={`inline-flex items-center gap-2 px-3.5 py-2.5 rounded-lg text-sm font-semibold transition-all border ${
+              isCloudActive
+                ? 'bg-emerald-50 text-emerald-800 border-emerald-300 hover:bg-emerald-100'
+                : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
+            }`}
+          >
+            <Cloud className={`w-4 h-4 ${isCloudActive ? 'text-emerald-600' : 'text-gray-400'}`} />
+            <span>{isCloudActive ? '🟢 Cloud Sync Active' : '☁️ Cloud Sync & Multi-Device'}</span>
+          </button>
+
+          <Link
+            to="/admin/products/new"
+            className="inline-flex items-center gap-2 bg-green-800 text-white px-4 py-2.5 rounded-lg hover:bg-green-700 transition-colors text-sm font-medium shadow-sm"
+          >
+            <Plus className="w-4 h-4" />
+            Add New Product
+          </Link>
+        </div>
       </div>
 
       {/* Search & Filters */}
@@ -345,6 +365,12 @@ const ProductManager: React.FC = () => {
           </div>
         </div>
       )}
+
+      {/* Cloud Sync & Multi-Device Modal */}
+      <CloudSyncModal
+        isOpen={cloudSyncModalOpen}
+        onClose={() => setCloudSyncModalOpen(false)}
+      />
     </div>
   );
 };
