@@ -13,10 +13,9 @@ export const products: Product[] = [
       'The Monstera Deliciosa, commonly known as the Swiss Cheese Plant, is one of the most popular houseplants worldwide. Its large, glossy, heart-shaped leaves develop unique perforations as the plant matures, creating an eye-catching tropical aesthetic. Native to Central American rainforests, this climbing plant adapts beautifully to indoor environments. It prefers bright, indirect light but tolerates lower light conditions. Water when the top inch of soil feels dry and provide a moss pole for climbing support. With proper care, it can grow several feet tall indoors.',
     category: 'indoor',
     image:
-      'https://images.unsplash.com/photo-1614594975525-e45190c55d0b?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1614594975525-e45190c55d0b?w=800&auto=format&fit=crop&q=80',
     images: [
-      'https://images.unsplash.com/photo-1614594975525-e45190c55d0b?w=600&h=600&fit=crop',
-      'https://images.unsplash.com/photo-1614594975525-e45190c55d0b?w=800&h=800&fit=crop',
+      'https://images.unsplash.com/photo-1614594975525-e45190c55d0b?w=800&auto=format&fit=crop&q=80',
     ],
     inStock: true,
     stockCount: 25,
@@ -45,9 +44,9 @@ export const products: Product[] = [
       'The Fiddle Leaf Fig (Ficus lyrata) is the darling of interior designers and plant enthusiasts alike. Its large, deeply veined, violin-shaped leaves create a bold architectural statement in any room. Native to West African rainforests, this plant loves consistency — stable temperatures, consistent watering, and plenty of bright, indirect light. Avoid moving it frequently as it can be sensitive to environmental changes. Wipe its broad leaves regularly to keep them dust-free and photosynthesizing efficiently. With patience and proper care, it can grow into a stunning indoor tree reaching up to 6 feet tall.',
     category: 'indoor',
     image:
-      'https://images.unsplash.com/photo-1597055181300-e3633a917e3d?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1545241047-6083a3684587?w=800&auto=format&fit=crop&q=80',
     images: [
-      'https://images.unsplash.com/photo-1597055181300-e3633a917e3d?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1545241047-6083a3684587?w=800&auto=format&fit=crop&q=80',
     ],
     inStock: true,
     stockCount: 12,
@@ -75,9 +74,9 @@ export const products: Product[] = [
       'Pothos, widely known as Money Plant in India, is arguably the easiest houseplant to grow. Its cascading vines of heart-shaped, variegated green and gold leaves look stunning trailing from shelves or hanging planters. This versatile plant grows equally well in soil or water, making it a fantastic choice for beginners. It thrives in a wide range of light conditions, from low light to bright indirect light. Pothos is also a champion air purifier, known to remove common indoor pollutants like formaldehyde and benzene. Simply trim the vines to encourage bushier growth.',
     category: 'indoor',
     image:
-      'https://images.unsplash.com/photo-1572688484438-313a56e6dc34?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1534726955665-2cb2d145f2ad?w=800&auto=format&fit=crop&q=80',
     images: [
-      'https://images.unsplash.com/photo-1572688484438-313a56e6dc34?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1534726955665-2cb2d145f2ad?w=800&auto=format&fit=crop&q=80',
     ],
     inStock: true,
     stockCount: 80,
@@ -106,9 +105,9 @@ export const products: Product[] = [
       'The Rubber Plant (Ficus elastica) is a robust and visually striking houseplant prized for its thick, leathery, dark green leaves that have a beautiful glossy sheen. Originally from Southeast Asia, this plant was once commercially grown for its latex sap. As a houseplant, it is remarkably forgiving and adapts well to various indoor conditions. It appreciates bright, indirect light but handles medium light gracefully. Water when the top inch of soil is dry, and reduce watering in winter. The Rubber Plant is an effective air purifier and can grow into a handsome indoor tree up to 8 feet tall with regular pruning.',
     category: 'indoor',
     image:
-      'https://images.unsplash.com/photo-1635364675538-40900fc28494?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1600411833196-7c1f6b1a8b90?w=800&auto=format&fit=crop&q=80',
     images: [
-      'https://images.unsplash.com/photo-1635364675538-40900fc28494?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1600411833196-7c1f6b1a8b90?w=800&auto=format&fit=crop&q=80',
     ],
     inStock: true,
     stockCount: 30,
@@ -136,9 +135,9 @@ export const products: Product[] = [
       'The ZZ Plant (Zamioculcas zamiifolia) is the ultimate houseplant for those who forget to water. Native to Eastern Africa, it has evolved thick, potato-like rhizomes that store water underground, making it incredibly drought-tolerant. Its glossy, dark green leaflets line gracefully arching stems, creating an elegant architectural look. The ZZ Plant thrives in low to bright indirect light and only needs watering every 2-3 weeks. It is also one of the best air-purifying plants according to NASA studies. Its sleek appearance makes it a popular choice for modern offices and minimalist interiors.',
     category: 'indoor',
     image:
-      'https://images.unsplash.com/photo-1632207691143-643e2a9a9361?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1632207691143-643e2a9a9361?w=800&auto=format&fit=crop&q=80',
     images: [
-      'https://images.unsplash.com/photo-1632207691143-643e2a9a9361?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1632207691143-643e2a9a9361?w=800&auto=format&fit=crop&q=80',
     ],
     inStock: true,
     stockCount: 20,
@@ -168,9 +167,9 @@ export const products: Product[] = [
       'Bougainvillea is a spectacular flowering vine that paints gardens in vivid shades of magenta, pink, purple, orange, and white. What appear to be flowers are actually colourful papery bracts surrounding tiny white blooms. This hardy, drought-tolerant plant thrives in full sun and hot climates, making it perfect for Indian gardens and balconies. It can be trained on trellises, pergolas, or grown in large pots. Bougainvillea blooms most profusely when slightly stressed — so less water and occasional pruning will reward you with more flowers. A mature plant can bloom almost year-round in tropical conditions.',
     category: 'outdoor',
     image:
-      'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1588628566587-dbd176de94b4?w=800&auto=format&fit=crop&q=80',
     images: [
-      'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1588628566587-dbd176de94b4?w=800&auto=format&fit=crop&q=80',
     ],
     inStock: true,
     stockCount: 35,
@@ -198,9 +197,9 @@ export const products: Product[] = [
       'Hibiscus (Hibiscus rosa-sinensis) is a beloved tropical shrub that produces large, showy, trumpet-shaped flowers in vibrant reds, pinks, oranges, and yellows. Each flower lasts only a day, but healthy plants produce blooms continuously throughout the growing season. Hibiscus thrives in full sun and warm temperatures, making it ideal for Indian gardens. Plant in well-draining soil and water regularly during hot months. Feed with a balanced fertiliser every two weeks during the blooming season for maximum flower production. Hibiscus flowers are also used in traditional Indian recipes for making tea and hair oil.',
     category: 'outdoor',
     image:
-      'https://images.unsplash.com/photo-1597826368522-9f4cb5a6a3f0?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1550950158-d0d960dff51b?w=800&auto=format&fit=crop&q=80',
     images: [
-      'https://images.unsplash.com/photo-1597826368522-9f4cb5a6a3f0?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1550950158-d0d960dff51b?w=800&auto=format&fit=crop&q=80',
     ],
     inStock: true,
     stockCount: 40,
@@ -228,9 +227,9 @@ export const products: Product[] = [
       'Jasmine (Jasminum) is an enchanting flowering plant treasured for its intensely fragrant white blossoms. The sweet, heady scent is strongest in the evening, making it a wonderful addition near patios, windows, and seating areas. Jasmine holds deep cultural significance in India, used in religious offerings, wedding decorations, and traditional hair adornment. This vigorous climber or shrub thrives in full sun to partial shade and prefers consistently moist, well-drained soil. It blooms most prolifically in warm months and benefits from regular pruning after flowering. Jasmine can be trained on trellises, arches, or grown in containers on balconies.',
     category: 'outdoor',
     image:
-      'https://images.unsplash.com/photo-1587838292204-5765e64ad8de?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1606041008023-472dfb5e530f?w=800&auto=format&fit=crop&q=80',
     images: [
-      'https://images.unsplash.com/photo-1587838292204-5765e64ad8de?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1606041008023-472dfb5e530f?w=800&auto=format&fit=crop&q=80',
     ],
     inStock: true,
     stockCount: 45,
@@ -258,9 +257,9 @@ export const products: Product[] = [
       'Tulsi, or Holy Basil (Ocimum tenuiflorum), is one of the most sacred plants in Indian culture, often found in the courtyards of Hindu households. Beyond its spiritual significance, Tulsi is a powerhouse of medicinal benefits — its leaves are used in traditional Ayurvedic remedies for colds, coughs, digestion, and stress relief. This aromatic herb thrives in warm, sunny conditions and is remarkably easy to grow in pots or garden beds. It prefers well-drained soil and regular watering. Pinch off flower buds to encourage bushier leaf growth. Tulsi also acts as a natural insect repellent, keeping mosquitoes at bay.',
     category: 'outdoor',
     image:
-      'https://images.unsplash.com/photo-1629157363330-0319e2e1b1ee?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1665479754958-1a8bdc47cc0d?w=800&auto=format&fit=crop&q=80',
     images: [
-      'https://images.unsplash.com/photo-1629157363330-0319e2e1b1ee?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1665479754958-1a8bdc47cc0d?w=800&auto=format&fit=crop&q=80',
     ],
     inStock: true,
     stockCount: 100,
@@ -288,9 +287,9 @@ export const products: Product[] = [
       'The Curry Leaf Plant (Murraya koenigii) is a must-have for every Indian kitchen garden. Its aromatic, pinnate leaves are a cornerstone ingredient in South Indian, Sri Lankan, and Southeast Asian cuisine, lending a distinctive flavour when used in tempering (tadka). Fresh curry leaves are far superior to dried ones in both aroma and taste. This small tree thrives in full sun and warm climates, making it ideal for Indian gardens and large balcony pots. It prefers well-drained, slightly acidic soil and moderate watering. Regular harvesting encourages new growth. The plant also has medicinal properties and is used in traditional remedies.',
     category: 'outdoor',
     image:
-      'https://images.unsplash.com/photo-1591857177580-dc82b9ac4e1e?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1591857177580-dc82b9ac4e1e?w=800&auto=format&fit=crop&q=80',
     images: [
-      'https://images.unsplash.com/photo-1591857177580-dc82b9ac4e1e?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1591857177580-dc82b9ac4e1e?w=800&auto=format&fit=crop&q=80',
     ],
     inStock: true,
     stockCount: 55,
@@ -320,9 +319,9 @@ export const products: Product[] = [
       'The Peace Lily (Spathiphyllum) is a graceful indoor plant that produces stunning white spathe flowers contrasting beautifully against its rich, dark green leaves. Ranked among NASA\'s top air-purifying plants, it effectively removes formaldehyde, benzene, and trichloroethylene from indoor air. Unlike many flowering plants, Peace Lilies bloom reliably even in low-light conditions, making them perfect for offices and bedrooms. They prefer consistently moist soil and high humidity. The plant will dramatically wilt when thirsty but bounces back quickly after watering. Its lush, tropical appearance adds a serene, calming ambiance to any space.',
     category: 'flowering',
     image:
-      'https://images.unsplash.com/photo-1593691509543-c55fb32d8de5?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1593691509543-c55fb32d8de5?w=800&auto=format&fit=crop&q=80',
     images: [
-      'https://images.unsplash.com/photo-1593691509543-c55fb32d8de5?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1593691509543-c55fb32d8de5?w=800&auto=format&fit=crop&q=80',
     ],
     inStock: true,
     stockCount: 28,
@@ -351,9 +350,9 @@ export const products: Product[] = [
       'The Phalaenopsis Orchid, commonly called the Moth Orchid, is the most popular and beginner-friendly orchid variety. Its arching sprays of delicate, butterfly-shaped flowers can last 2-3 months, making it one of the longest-blooming houseplants available. Available in a stunning range of colours — from pristine whites and soft pinks to vibrant purples and spotted varieties. Place in bright, indirect light and water weekly by soaking the roots. Use orchid-specific bark mix rather than regular soil. After blooming, cut the spike above a node to encourage re-blooming. With minimal care, these elegant plants can bloom multiple times per year.',
     category: 'flowering',
     image:
-      'https://images.unsplash.com/photo-1566873535350-a3f5bd4a2945?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?w=800&auto=format&fit=crop&q=80',
     images: [
-      'https://images.unsplash.com/photo-1566873535350-a3f5bd4a2945?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?w=800&auto=format&fit=crop&q=80',
     ],
     inStock: true,
     stockCount: 18,
@@ -381,9 +380,9 @@ export const products: Product[] = [
       'Anthurium, also known as the Flamingo Flower, is a stunning tropical plant that produces glossy, heart-shaped flowers in vibrant reds, pinks, and whites. What makes it exceptional is its ability to bloom almost continuously — each "flower" (actually a colourful spathe) lasts 6-8 weeks. Native to Colombian rainforests, Anthurium thrives in warm, humid conditions with bright, indirect light. Plant in a well-draining, peat-based mix and keep the soil lightly moist. Mist regularly or place on a pebble tray to increase humidity. This elegant plant makes an outstanding gift and adds a pop of colour to modern interiors year-round.',
     category: 'flowering',
     image:
-      'https://images.unsplash.com/photo-1567331711402-509c12c41959?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1542127186-6e67e7d5316f?w=800&auto=format&fit=crop&q=80',
     images: [
-      'https://images.unsplash.com/photo-1567331711402-509c12c41959?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1542127186-6e67e7d5316f?w=800&auto=format&fit=crop&q=80',
     ],
     inStock: true,
     stockCount: 15,
@@ -411,9 +410,9 @@ export const products: Product[] = [
       'African Violets (Saintpaulia) are beloved compact flowering plants that produce clusters of delicate blooms in shades of purple, blue, pink, and white above a rosette of soft, velvety leaves. They are one of the few houseplants that bloom almost continuously under the right conditions. Place in bright, indirect light — an east-facing window is ideal. Water from the bottom to avoid leaf spots, using room-temperature water. African Violets prefer consistent warmth and moderate humidity. Feed with a specialised African Violet fertiliser every 2 weeks during the growing season. Their compact size makes them perfect for windowsills and desktops.',
     category: 'flowering',
     image:
-      'https://images.unsplash.com/photo-1490750967868-88aa4f44baee?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1645286975285-61e710b35a87?w=800&auto=format&fit=crop&q=80',
     images: [
-      'https://images.unsplash.com/photo-1490750967868-88aa4f44baee?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1645286975285-61e710b35a87?w=800&auto=format&fit=crop&q=80',
     ],
     inStock: true,
     stockCount: 22,
@@ -441,9 +440,9 @@ export const products: Product[] = [
       'Marigolds (Tagetes) are cheerful, sun-loving annuals that produce abundant blooms in warm shades of gold, orange, and yellow. They are a staple in Indian gardens and hold cultural significance — marigold garlands are used in festivals, weddings, and religious ceremonies. Beyond their beauty, marigolds are excellent companion plants that naturally repel harmful insects and nematodes, protecting nearby vegetables and herbs. They thrive in full sun and well-drained soil, blooming prolifically from spring through autumn. Extremely easy to grow from seeds or seedlings, marigolds are perfect for beginners. Deadhead spent flowers regularly to encourage continuous blooming.',
     category: 'flowering',
     image:
-      'https://images.unsplash.com/photo-1603217040830-8b8d3e5b1b31?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1691886273161-8e27d3292144?w=800&auto=format&fit=crop&q=80',
     images: [
-      'https://images.unsplash.com/photo-1603217040830-8b8d3e5b1b31?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1691886273161-8e27d3292144?w=800&auto=format&fit=crop&q=80',
     ],
     inStock: true,
     stockCount: 120,
@@ -473,9 +472,9 @@ export const products: Product[] = [
       'Echeveria is a stunning rosette-forming succulent native to Mexico and Central America. Its fleshy, spoon-shaped leaves come in a mesmerising palette of greens, blues, pinks, and purples, often with a powdery coating called farina. These compact plants are perfect for bright windowsills, succulent arrangements, and rock gardens. Echeveria requires full sun to maintain its compact shape and vibrant colours — insufficient light causes stretching (etiolation). Water deeply but infrequently using the "soak and dry" method. Plant in well-draining succulent or cactus mix. They occasionally produce delicate bell-shaped flowers on tall stalks. Easy to propagate from leaf cuttings.',
     category: 'succulents',
     image:
-      'https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1520302630591-fd1c66edc19d?w=800&auto=format&fit=crop&q=80',
     images: [
-      'https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1520302630591-fd1c66edc19d?w=800&auto=format&fit=crop&q=80',
     ],
     inStock: true,
     stockCount: 60,
@@ -503,9 +502,9 @@ export const products: Product[] = [
       'Aloe Vera is the quintessential household succulent, valued for thousands of years for its remarkable medicinal properties. Its thick, fleshy leaves contain a soothing gel widely used for treating minor burns, sunburn, skin irritations, and in beauty routines. Beyond its healing properties, Aloe Vera is an attractive, low-maintenance houseplant that thrives on sunny windowsills. It stores water in its leaves, making it extremely drought-tolerant — water only when the soil is completely dry. Plant in a well-draining cactus mix in a pot with drainage holes. Aloe produces offsets (pups) that can be separated and repotted, giving you free plants to share.',
     category: 'succulents',
     image:
-      'https://images.unsplash.com/photo-1596547609652-9cf5d8d76921?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1596547609652-9cf5d8d76921?w=800&auto=format&fit=crop&q=80',
     images: [
-      'https://images.unsplash.com/photo-1596547609652-9cf5d8d76921?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1596547609652-9cf5d8d76921?w=800&auto=format&fit=crop&q=80',
     ],
     inStock: true,
     stockCount: 75,
@@ -533,9 +532,9 @@ export const products: Product[] = [
       'The Jade Plant (Crassula ovata) is a popular succulent shrub known as the "Money Tree" or "Lucky Plant" — traditionally believed to attract wealth and prosperity. Its thick, glossy, oval leaves grow on sturdy woody stems, and with age, it develops a tree-like silhouette that resembles a miniature bonsai. Jade Plants can live for decades, often becoming cherished family heirlooms. They prefer bright light and infrequent watering — allow the soil to dry out completely between waterings. Feed sparingly during the growing season. These resilient plants are perfect for sunny windowsills and make thoughtful housewarming gifts symbolising good fortune.',
     category: 'succulents',
     image:
-      'https://images.unsplash.com/photo-1509423350716-97f9360b4e09?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1509423350716-97f9360b4e09?w=800&auto=format&fit=crop&q=80',
     images: [
-      'https://images.unsplash.com/photo-1509423350716-97f9360b4e09?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1509423350716-97f9360b4e09?w=800&auto=format&fit=crop&q=80',
     ],
     inStock: true,
     stockCount: 32,
@@ -564,9 +563,9 @@ export const products: Product[] = [
       'String of Pearls (Senecio rowleyanus) is a captivating trailing succulent that features cascading strands of small, spherical, pea-like leaves — resembling a beaded necklace. Native to Southwest Africa, this unique plant has adapted its round leaf shape to minimise water loss while maximising water storage. It looks absolutely spectacular in hanging planters, high shelves, or trailing from macramé hangers. Provide bright, indirect light and water sparingly — the pearl-like leaves will shrivel slightly when thirsty, signalling it\'s time to water. Use well-draining succulent mix and be careful not to overwater, as this is the most common cause of failure.',
     category: 'succulents',
     image:
-      'https://images.unsplash.com/photo-1521505651032-31ccc712e42e?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1648070024548-b0ccc1e6fc1e?w=800&auto=format&fit=crop&q=80',
     images: [
-      'https://images.unsplash.com/photo-1521505651032-31ccc712e42e?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1648070024548-b0ccc1e6fc1e?w=800&auto=format&fit=crop&q=80',
     ],
     inStock: true,
     stockCount: 14,
@@ -594,9 +593,9 @@ export const products: Product[] = [
       'The Barrel Cactus (Echinocactus grusonii), also known as the Golden Barrel Cactus or Mother-in-Law\'s Cushion, is a stunning globular cactus covered in rows of golden-yellow spines. Its symmetrical ribbed shape and vibrant spines make it a living sculpture, perfect for minimalist and contemporary interiors. Native to Mexican deserts, this cactus is supremely drought-tolerant and requires very little attention. Place in a bright, sunny spot and water only once a month during the growing season, even less in winter. Use cactus-specific soil mix with excellent drainage. Barrel cacti are extremely long-lived and slow-growing, adding character to your collection for years.',
     category: 'succulents',
     image:
-      'https://images.unsplash.com/photo-1551893478-d726eaf0442c?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1551893478-d726eaf0442c?w=800&auto=format&fit=crop&q=80',
     images: [
-      'https://images.unsplash.com/photo-1551893478-d726eaf0442c?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1551893478-d726eaf0442c?w=800&auto=format&fit=crop&q=80',
     ],
     inStock: true,
     stockCount: 18,
@@ -626,9 +625,9 @@ export const products: Product[] = [
       'The Snake Plant (Sansevieria trifasciata), also known as Mother-in-Law\'s Tongue, is an extraordinarily resilient houseplant with striking, upright, sword-shaped leaves. Its bold architectural form and dramatic yellow-green variegation make it a favourite for modern interiors. What sets the Snake Plant apart is its unique ability to convert CO2 to oxygen at night (CAM photosynthesis), making it an ideal bedroom plant. NASA studies rank it among the top air-purifying plants, capable of removing formaldehyde, benzene, xylene, and trichloroethylene. It thrives on neglect — tolerating low light, infrequent watering, and varying temperatures. Water only when soil is bone dry.',
     category: 'air-purifying',
     image:
-      'https://images.unsplash.com/photo-1620127252536-03bdfcb57634?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1563769874043-9eac75ae0049?w=800&auto=format&fit=crop&q=80',
     images: [
-      'https://images.unsplash.com/photo-1620127252536-03bdfcb57634?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1563769874043-9eac75ae0049?w=800&auto=format&fit=crop&q=80',
     ],
     inStock: true,
     stockCount: 50,
@@ -656,9 +655,9 @@ export const products: Product[] = [
       'The Spider Plant (Chlorophytum comosum) is a classic, fast-growing houseplant known for its gracefully arching, variegated green and white striped leaves. As it matures, it produces long runners with small "baby" plants (spiderettes) dangling at their tips — these can be easily propagated by placing them in water or soil. Spider Plants are ranked among NASA\'s top air-purifying plants, effectively removing carbon monoxide, formaldehyde, and xylene. They are one of the few popular houseplants that are completely non-toxic to cats and dogs. Thriving in a wide range of conditions, they prefer bright indirect light but tolerate lower light levels gracefully.',
     category: 'air-purifying',
     image:
-      'https://images.unsplash.com/photo-1585792259ae-588c1a5ef3e6?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1753900526196-11c005bddd8b?w=800&auto=format&fit=crop&q=80',
     images: [
-      'https://images.unsplash.com/photo-1585792259ae-588c1a5ef3e6?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1753900526196-11c005bddd8b?w=800&auto=format&fit=crop&q=80',
     ],
     inStock: true,
     stockCount: 42,
@@ -686,9 +685,9 @@ export const products: Product[] = [
       'The Boston Fern (Nephrolepis exaltata) is a timeless classic with arching, feathery fronds that cascade beautifully from hanging baskets and pedestals. It has been a popular houseplant since the Victorian era, prized for its lush, graceful appearance. Boston Ferns are exceptional air purifiers and natural humidifiers — they remove formaldehyde and add moisture to dry indoor air, making them perfect for bathrooms and kitchens. They thrive in indirect light and high humidity, so mist regularly or place on a pebble tray. Keep the soil consistently moist but not waterlogged. While they require a bit more attention than some plants, their stunning beauty is well worth the effort.',
     category: 'air-purifying',
     image:
-      'https://images.unsplash.com/photo-1497250681960-ef046c08a56e?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=800&auto=format&fit=crop&q=80',
     images: [
-      'https://images.unsplash.com/photo-1497250681960-ef046c08a56e?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=800&auto=format&fit=crop&q=80',
     ],
     inStock: true,
     stockCount: 20,
@@ -717,9 +716,9 @@ export const products: Product[] = [
       'The Areca Palm (Dypsis lutescens), also known as the Butterfly Palm, is one of the most popular indoor palms, bringing a lush tropical ambiance to any space. Its graceful, feathery fronds arch elegantly from multiple stems, creating a full, lush canopy. Areca Palms are outstanding natural humidifiers, releasing moisture into dry indoor air, and are highly effective at removing indoor pollutants including formaldehyde, xylene, and toluene. They thrive in bright, indirect light and prefer consistently moist soil during the growing season. Position away from direct sun which can scorch the fronds. Areca Palms can grow up to 6-7 feet indoors, making them striking floor plants.',
     category: 'air-purifying',
     image:
-      'https://images.unsplash.com/photo-1610664921890-0e3c96b33efb?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1616046229478-9901c5536a45?w=800&auto=format&fit=crop&q=80',
     images: [
-      'https://images.unsplash.com/photo-1610664921890-0e3c96b33efb?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1616046229478-9901c5536a45?w=800&auto=format&fit=crop&q=80',
     ],
     inStock: true,
     stockCount: 15,
@@ -747,9 +746,9 @@ export const products: Product[] = [
       'English Ivy (Hedera helix) is a versatile, evergreen climbing and trailing plant with distinctive lobed leaves. It is particularly effective at reducing airborne mould particles and allergens, making it a top choice for improving indoor air quality, especially in bathrooms and damp areas. English Ivy looks stunning trailing from shelves and hanging baskets, or trained up a moss pole or trellis. It prefers cool to moderate temperatures and indirect light, though it adapts to various conditions. Keep soil evenly moist and mist occasionally to maintain humidity. Available in numerous attractive varieties with variegated, ruffled, or miniature leaves for diverse decorating options.',
     category: 'air-purifying',
     image:
-      'https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1519393085459-be21f89585f1?w=800&auto=format&fit=crop&q=80',
     images: [
-      'https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1519393085459-be21f89585f1?w=800&auto=format&fit=crop&q=80',
     ],
     inStock: true,
     stockCount: 30,
@@ -779,9 +778,9 @@ export const products: Product[] = [
       'The Bamboo Palm (Chamaedorea seifrizii) is an elegant, clump-forming palm named for its slender, bamboo-like stems topped with soft, feathery fronds. It is one of the best indoor palms for low to moderate light conditions, making it versatile for various room placements. NASA research highlights its effectiveness at removing formaldehyde, benzene, and carbon monoxide from indoor air. The Bamboo Palm prefers consistently moist soil and appreciates occasional misting to boost humidity. It is non-toxic to pets, making it a safe choice for households with cats and dogs. Grows steadily to 4-6 feet indoors, providing a lush, tropical focal point in living rooms and offices.',
     category: 'low-maintenance',
     image:
-      'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1679407509869-95d525d7caed?w=800&auto=format&fit=crop&q=80',
     images: [
-      'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1679407509869-95d525d7caed?w=800&auto=format&fit=crop&q=80',
     ],
     inStock: true,
     stockCount: 12,
@@ -809,9 +808,9 @@ export const products: Product[] = [
       'Lucky Bamboo (Dracaena sanderiana) is not actually a bamboo but a member of the Dracaena family. It is one of the most popular feng shui plants, believed to bring good luck, prosperity, and positive energy. The number of stalks carries different meanings — three for happiness, five for health, and eight for wealth. Lucky Bamboo is exceptionally easy to care for and can grow in just water with pebbles for support, requiring no soil at all. Change the water every 1-2 weeks and keep it in indirect light. Avoid direct sunlight and chlorinated water. Its elegant, often artistically twisted stalks make it a wonderful gift for housewarmings and celebrations.',
     category: 'low-maintenance',
     image:
-      'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1524222928538-afb4409a0d70?w=800&auto=format&fit=crop&q=80',
     images: [
-      'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1524222928538-afb4409a0d70?w=800&auto=format&fit=crop&q=80',
     ],
     inStock: true,
     stockCount: 90,
@@ -839,9 +838,9 @@ export const products: Product[] = [
       'The Heartleaf Philodendron (Philodendron hederaceum) is a beloved tropical vine prized for its glossy, heart-shaped leaves and incredibly forgiving nature. It is one of the most adaptable houseplants, thriving in a wide range of light conditions from low light to bright indirect. Its cascading vines look beautiful trailing from shelves, climbing a moss pole, or spilling from hanging baskets. Philodendrons prefer to dry slightly between waterings and appreciate occasional misting. They are fast growers and can be easily propagated by snipping a stem below a node and placing it in water. An excellent air purifier, it helps remove indoor toxins while adding vibrant greenery.',
     category: 'low-maintenance',
     image:
-      'https://images.unsplash.com/photo-1632207691143-643e2a9a9361?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1757060454219-a58195dc2178?w=800&auto=format&fit=crop&q=80',
     images: [
-      'https://images.unsplash.com/photo-1632207691143-643e2a9a9361?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1757060454219-a58195dc2178?w=800&auto=format&fit=crop&q=80',
     ],
     inStock: true,
     stockCount: 35,
@@ -869,9 +868,9 @@ export const products: Product[] = [
       'Chinese Evergreen (Aglaonema) is a stunning foliage plant celebrated for its beautifully patterned leaves that come in combinations of green, silver, pink, and red. Native to tropical Asian forests, it has adapted to thrive in low light, making it one of the best choices for dimly lit offices, bedrooms, and north-facing rooms. Chinese Evergreens are remarkably tolerant of neglect — they handle irregular watering, low humidity, and temperature fluctuations with grace. Water when the top inch of soil is dry and avoid cold drafts. Newer hybrid varieties feature spectacular pink and red variegation. An effective air purifier, it removes formaldehyde and benzene from indoor environments.',
     category: 'low-maintenance',
     image:
-      'https://images.unsplash.com/photo-1616527099467-cb40aacc49ac?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1751445384288-232ff85ef5ff?w=800&auto=format&fit=crop&q=80',
     images: [
-      'https://images.unsplash.com/photo-1616527099467-cb40aacc49ac?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1751445384288-232ff85ef5ff?w=800&auto=format&fit=crop&q=80',
     ],
     inStock: true,
     stockCount: 22,
@@ -899,9 +898,9 @@ export const products: Product[] = [
       'The Cast Iron Plant (Aspidistra elatior) earns its name through its near-indestructible nature. This Victorian-era favourite features elegant, upright, dark green lance-shaped leaves that can grow up to 2 feet long. It is one of the very few houseplants that genuinely thrives in deep shade, making it ideal for hallways, corners, and rooms with minimal natural light. It tolerates temperature fluctuations, low humidity, irregular watering, and even poor air quality. Water only when the soil is dry and avoid overwatering, which is the only thing that can truly harm it. The Cast Iron Plant grows slowly but steadily, requiring very little fertilisation. A truly set-it-and-forget-it plant for the busiest lifestyles.',
     category: 'low-maintenance',
     image:
-      'https://images.unsplash.com/photo-1463936575829-25148e1db1b8?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1512428813834-c702c7702b78?w=800&auto=format&fit=crop&q=80',
     images: [
-      'https://images.unsplash.com/photo-1463936575829-25148e1db1b8?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1512428813834-c702c7702b78?w=800&auto=format&fit=crop&q=80',
     ],
     inStock: true,
     stockCount: 10,
@@ -932,9 +931,9 @@ export const products: Product[] = [
       'This premium Ceramic Planter Set includes three beautifully crafted pots in graduated sizes (small, medium, and large) with a modern matte white finish. Each planter features a drainage hole with a matching ceramic saucer to protect your surfaces. The clean, minimalist design complements any interior style — from Scandinavian to bohemian. Made from high-quality, kiln-fired ceramic that is durable and frost-resistant. The smooth finish makes them easy to clean, and the neutral colour lets your plants take centre stage. Perfect for creating a cohesive, curated plant display on shelves, windowsills, or tabletops. Also makes a wonderful gift set for plant enthusiasts.',
     category: 'pots-accessories',
     image:
-      'https://images.unsplash.com/photo-1485955900006-10f4d324d411?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1485955900006-10f4d324d411?w=800&auto=format&fit=crop&q=80',
     images: [
-      'https://images.unsplash.com/photo-1485955900006-10f4d324d411?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1485955900006-10f4d324d411?w=800&auto=format&fit=crop&q=80',
     ],
     inStock: true,
     stockCount: 25,
@@ -960,9 +959,9 @@ export const products: Product[] = [
       'This classic Terracotta Pot is handcrafted from natural clay and kiln-fired to create a porous, breathable planter that promotes healthy root growth. Terracotta\'s natural porosity allows air and water to pass through the walls, preventing root rot — making it ideal for plants that prefer well-drained soil like succulents, herbs, and Mediterranean plants. The warm, earthy tone of terracotta complements both indoor and outdoor settings and develops a beautiful aged patina over time with mineral deposits and moss. Each pot features a drainage hole for proper water management. Available in the traditional bell shape that has been used by gardeners for centuries.',
     category: 'pots-accessories',
     image:
-      'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=800&auto=format&fit=crop&q=80',
     images: [
-      'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=800&auto=format&fit=crop&q=80',
     ],
     inStock: true,
     stockCount: 100,
@@ -988,9 +987,9 @@ export const products: Product[] = [
       'This gorgeous Macramé Plant Hanger is hand-knotted from 100% natural, unbleached cotton rope in an intricate bohemian pattern. It transforms any trailing plant into a stunning hanging display, adding texture and visual interest at eye level. The macramé design includes a sturdy hanging loop and a secure basket cradle that holds pots up to 18cm in diameter. Perfect for displaying Pothos, String of Pearls, Spider Plants, and Boston Ferns. Hang from ceiling hooks, curtain rods, or wall brackets to maximise vertical space and create a lush, boho-chic ambiance. Each piece is handcrafted, making every hanger subtly unique. Measures approximately 90cm in total length.',
     category: 'pots-accessories',
     image:
-      'https://images.unsplash.com/photo-1622467828429-9d3206e26017?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=800&auto=format&fit=crop&q=80',
     images: [
-      'https://images.unsplash.com/photo-1622467828429-9d3206e26017?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=800&auto=format&fit=crop&q=80',
     ],
     inStock: true,
     stockCount: 30,
@@ -1017,9 +1016,9 @@ export const products: Product[] = [
       'This comprehensive Garden Tool Set includes five essential gardening tools crafted from rust-resistant stainless steel with comfortable, ergonomic wooden handles. The set includes: a hand trowel for digging and planting, a transplanter for moving seedlings, a weeder for removing pesky weeds, a hand fork for loosening and aerating soil, and sharp bypass pruning shears for trimming and shaping plants. All tools come neatly organised in a durable canvas carry bag with individual pockets. The wooden handles are sanded smooth and treated for moisture resistance. Whether you are tending to a small balcony garden or a full backyard, this versatile set covers all your basic gardening needs.',
     category: 'pots-accessories',
     image:
-      'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1617576683096-00fc8eecb3af?w=800&auto=format&fit=crop&q=80',
     images: [
-      'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1617576683096-00fc8eecb3af?w=800&auto=format&fit=crop&q=80',
     ],
     inStock: true,
     stockCount: 18,
@@ -1045,9 +1044,9 @@ export const products: Product[] = [
       'This premium Organic Potting Mix is a carefully formulated blend of natural ingredients designed to give your plants the best growing medium. It combines nutrient-rich vermicompost for slow-release organic nutrition, cocopeat for moisture retention and aeration, perlite for improved drainage and root oxygenation, and neem cake for natural pest protection. The result is a light, fluffy, well-draining soil that suits a wide range of houseplants, from tropical foliage to flowering plants. Free from synthetic chemicals and pesticides, it is safe for edible plants, children, and pets. Each 5kg bag is sufficient for repotting 8-10 medium-sized plants. Store in a cool, dry place.',
     category: 'pots-accessories',
     image:
-      'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=800&auto=format&fit=crop&q=80',
     images: [
-      'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=800&auto=format&fit=crop&q=80',
     ],
     inStock: true,
     stockCount: 65,
@@ -1073,9 +1072,9 @@ export const products: Product[] = [
       'This innovative Self-Watering Pot features a clever built-in water reservoir system that automatically delivers moisture to your plant\'s roots through capillary action. Simply fill the reservoir through the side opening, and the wicking system draws water up to the soil as needed, keeping your plant consistently hydrated for up to 2 weeks. This eliminates the guesswork of watering and is a lifesaver for frequent travellers, busy professionals, and forgetful plant owners. The sleek, modern design features a matte finish in contemporary white with a transparent water level indicator. Made from durable, UV-resistant polypropylene. Available in medium size (20cm), suitable for most popular houseplants.',
     category: 'pots-accessories',
     image:
-      'https://images.unsplash.com/photo-1485955900006-10f4d324d411?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1497990571654-77aa8ec36038?w=800&auto=format&fit=crop&q=80',
     images: [
-      'https://images.unsplash.com/photo-1485955900006-10f4d324d411?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1497990571654-77aa8ec36038?w=800&auto=format&fit=crop&q=80',
     ],
     inStock: true,
     stockCount: 20,
